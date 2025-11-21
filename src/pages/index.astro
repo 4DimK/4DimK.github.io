@@ -1,11 +1,29 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TopNav from "../components/TopNav.astro";
+import ProjectCard from "../components/ProjectCard.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const projects = [
+  { title: "Project #1 Portal", image: "/placeholder1.jpg" },
+  { title: "Project #2 Portal", image: "/placeholder2.jpg" },
+  { title: "Project #3 Portal", image: "/placeholder3.jpg" },
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title="Dashboard">
+  <TopNav />
+
+  <!-- Catchy sentence -->
+  <section class="mt-12 px-6">
+    <div class="bg-white shadow-md rounded-lg py-6 px-4 text-center text-3xl font-semibold">
+      Catchy <span class="text-indigo-600">Sentence</span>
+    </div>
+  </section>
+
+  <!-- Project cards -->
+  <section class="px-6 mt-16">
+    {projects.map((p, i) => (
+      <ProjectCard title={p.title} image={p.image} index={i} />
+    ))}
+  </section>
+</BaseLayout>
